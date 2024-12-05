@@ -4,7 +4,7 @@
   --secondary-color: #ff5700;
   --success-color: #28a745;
   --delete-color: #c40000;
-  --select-color: #004bcd;
+  --select-color: #6f6f6f;
   --danger-color: #ff0000;
   --font-family: Arial, sans-serif;
   --font-color: #333;
@@ -140,15 +140,27 @@ h3 {
 }
 
 .btn#blky-rdt-toggle-comments {
-  background-color: var(--success-color);
+  background-color: var(--select-color);
 }
 
 .btn#blky-rdt-toggle-comments:hover {
-  background-color: #218838;
+  background-color: #252222;
 }
 
 .btn#blky-rdt-toggle-comments:active {
-  background-color: #1e7e34;
+  background-color: #787878;
+}
+
+.btn#blky-rdt-delete-comments {
+  background-color: var(--delete-color);
+}
+
+.btn#blky-rdt-delete-comments:hover {
+  background-color: #6a0000;
+}
+
+.btn#blky-rdt-delete-comments:active {
+  background-color: #3d0000;
 }
 
 footer {
