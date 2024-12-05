@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit Bulk Comment Deleter",
+  "version": "1.0",
+  "description": "Bulk delete comments from the old Reddit profile page.",
+  "permissions": ["scripting", "tabs", "activeTab"],
+  "host_permissions": ["https://old.reddit.com/user/*"],
+
+  "content_scripts": [
+    {
+      "matches": ["https://old.reddit.com/user/*"],
+      "js": ["js/reddit.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "src/icon.png"
+    }
+  }
+}
