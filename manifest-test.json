@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Reddit Bulk Comment Deleter",
+  "name": "Bulky",
   "version": "1.0",
-  "description": "Bulk delete comments from the old Reddit profile page.",
+  "description": "Perform bulk actions in websites that doesn't support selecting multiple options. Currently supports bulk deletion of reddit comments.",
   "permissions": ["scripting", "tabs", "activeTab"],
   "host_permissions": ["https://old.reddit.com/user/*"],
 

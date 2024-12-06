@@ -35,3 +35,13 @@ Commercial Use Restriction: Usage of this software for commercial purposes is no
 ## Contributing
 
 Contributions are welcome! Feel free to fork the repository, add new features, or fix issues, and submit a pull request.
+
+## Disclaimer
+
+Please use the **Bulky Extension** with caution! Any comments, posts, or other data you delete may not be recoverable, so double-check before making any big changes.
+
+This extension does not modify or access the website's API directly — it simply interacts with the page content. We respect any website’s throttle limits and encourage you to follow their terms of service.
+
+Always be mindful and use this extension responsibly. We're not responsible for any accidental deletions, issues, or violations of website rules that may occur.
+
+Happy bulk editing, and remember to be kind to the internet!
