@@ -1,5 +1,5 @@
 // Constants for the delay and selectors used in the script
-const deleteDelay = 500; // Delay between delete actions in milliseconds
+const deleteDelay = 800; // Delay between delete actions in milliseconds
 const cmntsQuery = 'div[data-type="comment"]:not(.hidden)'; // Selector to find visible comments
 const postsQuery = 'div[data-type="link"]:not(.hidden)'; // Selector to find visible comments
 const cmntChckBoxQuery = 'input.blky-cmnt-checkbox[type="checkbox"]'; // Selector for checkboxes inside comments
@@ -9,7 +9,7 @@ const dltCnfBtnQuery =
   'span.option.error.active > a.yes[href="javascript:void(0)"]'; // Selector for confirmation delete buttons
 const cmntChckBoxClass = "blky-cmnt-checkbox"; // Class name for checkboxes, for styling or tracking
 const postChckBoxClass = "blky-post-checkbox";
-const nextBtnQuery = "span.nextprev span.next-button a.nofollow.next";
+const nextBtnQuery = "div.nav-buttons span.nextprev span.next-button a";
 const prevBtnQuery = "span.nextprev span.next-button a.nofollow.next";
 
 let cmnts = document.querySelectorAll(cmntsQuery); // Initialize comments node list
@@ -109,7 +109,9 @@ browser.runtime.onMessage.addListener((message) => {
   } else if (message.action === "togglePosts") {
     toggleElements(postChckBoxQuery);
   } else if (message.action === "deleteAllComments") {
-    deleteAllComments(cmntsQuery);
+    deleteAll(cmntsQuery, "Comments");
+  } else if (message.action === "deleteAllPosts") {
+    deleteAll(postsQuery, "Posts");
   }
 });
 function deleteElements(elementQuery, checkBoxQuery, elementType) {
@@ -166,26 +168,58 @@ function toggleElements(checkBoxQuery) {
 /**
  * Deletes all comments in a profile by repeatedly loading new sets of comments.
  */
-function deleteAllComments(elementQuery) {
-  console.log("Delete all comments");
-  if (
-    confirm(
-      `Are you sure you want to delete all comments? This action cannot be reversed.`
-    )
-  ) {
-    let elements = document.querySelectorAll(elementQuery);
-    elements.forEach((e, index) => {
-      let btn = e.querySelector(dltBtnQuery);
-      btn.click();
-    });
-    elements = document.querySelectorAll(elementQuery);
+function deleteAll(elementQuery, elementType, askConfirmation = true) {
+  let isblkyRedditDeletionStarted = sessionStorage.getItem(
+    `blkyRedditDeletionStarted${elementType}`
+  );
+  let nxtBtn = document.querySelector(nextBtnQuery);
 
-    elements.forEach((e, index) => {
-      let clickDelay = delayed ? (deleteDelay / 2) * index : 0;
-      let dltCnfBtn = document.querySelector(dltCnfBtnQuery);
-      setTimeout(() => {
-        dltCnfBtn.click();
-      }, clickDelay * index);
-    });
+  if (askConfirmation || isblkyRedditDeletionStarted === "true") {
+    if (
+      !askConfirmation ||
+      confirm(
+        `Are you sure you want to delete all ${elementType}? This action cannot be reversed.`
+      )
+    ) {
+      console.log(
+        askConfirmation
+          ? "Starting"
+          : "Resuming" + ` complete deletion of ${elementType}`
+      );
+      let elements = document.querySelectorAll(elementQuery);
+      elements.forEach((e, index) => {
+        let btn = e.querySelector(dltBtnQuery);
+        btn.click();
+      });
+      elements = document.querySelectorAll(elementQuery);
+
+      elements.forEach((e, index) => {
+        let clickDelay = deleteDelay * index;
+        let dltCnfBtn = e.querySelector(dltCnfBtnQuery);
+        setTimeout(() => {
+          dltCnfBtn.click();
+          if (index == elements.length - 1) {
+            console.log(`All ${elementType} deleted, reloading tab...`);
+
+            setTimeout(() => {
+              window.location.reload(); // Reload after a short delay
+            }, 1000);
+          }
+        }, clickDelay);
+      });
+      nxtBtn = document.querySelector(nextBtnQuery);
+      if (nxtBtn != null) {
+        sessionStorage.setItem(
+          `blkyRedditDeletionStarted${elementType}`,
+          "true"
+        );
+      } else {
+        sessionStorage.removeItem(`blkyRedditDeletionStarted${elementType}`);
+        console.log("Deletion finished. Session storage updated");
+      }
+    }
   }
 }
+
+deleteAll(cmntsQuery, "Comments", false);
+deleteAll(postsQuery, "Posts", false);

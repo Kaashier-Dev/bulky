@@ -85,4 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("Error sending message to content script:", error);
         });
     });
+
+  document
+    .getElementById("blky-rdt-delete-all-posts")
+    .addEventListener("click", () => {
+      // Get the active tab
+      browser.tabs
+        .query({ active: true, currentWindow: true })
+        .then((tabs) => {
+          // Send a message to the content script in the active tab
+          browser.tabs.sendMessage(tabs[0].id, { action: "deleteAllPosts" });
+        })
+        .catch((error) => {
+          console.error("Error sending message to content script:", error);
+        });
+    });
 });
