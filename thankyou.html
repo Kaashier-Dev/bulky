@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Using Bulky!</title>
+    <link rel="icon" type="image/x-icon" href="/src/icon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 90%;
+            width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 150px;
+            /* Adjust as needed */
+            height: auto;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .support-text {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* changed from stretch to center */
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .support-button {
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            /* Added to make buttons take up full width */
+        }
+
+        .support-button:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .review-button {
+            background-color: #42a5f5;
+            color: white;
+        }
+
+        .review-button:hover {
+            background-color: #1e88e5;
+        }
+
+        .coffee-button {
+            background-color: #ff813f;
+            /* Orange */
+            color: #fff;
+        }
+
+        .coffee-button:hover {
+            background-color: #e65100;
+        }
+
+        .github-button {
+            background-color: #2d3748;
+            /* Dark gray/charcoal */
+            color: #fff;
+        }
+
+        .github-button:hover {
+            background-color: #1a202c;
+        }
+
+        .button-icon {
+            margin-right: 10px;
+            height: 24px;
+            /* Adjust icon size as needed */
+            width: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .support-text {
+                font-size: 16px;
+            }
+
+            .support-button {
+                font-size: 16px;
+                padding: 12px 16px;
+            }
+
+            .logo img {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="src/bulky.webp" alt="Your Extension Logo">
+        </div>
+        <h1 class="title">Thank You for Using Bulky!</h1>
+        <p class="support-text">
+            I hope you find Bulky useful in streamlining your workflow. If it helped you, I would greatly
+            appreciate your support to help me continue improving and maintaining it.
+        </p>
+        <div class="button-group">
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/bulky-bulk-delete-comments/reviews/" target="_blank"
+                rel="noopener noreferrer">
+                <button class="support-button review-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png"
+                        alt="Firefox Logo" class="button-icon">
+                    Write a Review on Firefox Addons
+                </button>
+            </a>
+            <a href="https://buymeacoffee.com/kaashier" target="_blank" rel="noopener noreferrer">
+                <button class="support-button coffee-button">
+                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee"
+                        class="button-icon" style="height: 38px; width: auto;">
+                    Make a donation
+                </button>
+            </a>
+            <a href="https://github.com/Kaashier-Dev/bulky" target="_blank" rel="noopener noreferrer">
+                <button class="support-button github-button">
+                    <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub Logo"
+                        class="button-icon">
+                    GitHub
+                </button>
+            </a>
+        </div>
+    </div>
+    <script>
+        //You can add javascript here if you want
+    </script>
+</body>
+
+</html>

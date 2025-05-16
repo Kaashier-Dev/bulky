@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Query the current active tab
   browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
     const activeTab = tabs[0];
-    if (activeTab.url.includes("old.reddit.com")) {
+    if (activeTab.url.includes("old.reddit.com/user")) {
       // Show Reddit-specific tools
       redditOptions.classList.remove("hidden");
       generalSection.classList.add("hidden");

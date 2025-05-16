@@ -1,9 +1,15 @@
 {
   "manifest_version": 3,
   "name": "Bulky",
-  "version": "1.0",
-  "description": "Perform bulk actions in websites that doesn't support selecting multiple options. Currently supports bulk deletion of reddit comments.",
-  "permissions": ["scripting", "tabs", "activeTab"],
+  "version": "2.1",
+  "description": "Perform bulk actions in websites that doesn't support selecting multiple options. Currently supports bulk deletion of reddit posts and comments.",
+  "permissions": [
+    "scripting",
+    "tabs",
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking"
+  ],
   "host_permissions": ["https://old.reddit.com/user/*"],
 
   "content_scripts": [
@@ -12,10 +18,33 @@
       "js": ["js/reddit.js"]
     }
   ],
+  "background": {
+    "scripts": ["js/background.js"]
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
       "48": "src/icon.png"
     }
-  }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{replace-with-id}",
+      "strict_min_version": "109.0"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/icon.png"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["src/bulky.webp"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["thankyou.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
